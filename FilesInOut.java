@@ -16,8 +16,14 @@ public class FilesInOut {
             String files = argument.substring(20);
             String input = files.split(" ")[0];
             String output = files.split(" ")[1];
-            System.out.println(output);
+
             formatStrings(input,output,"upperCase");
+        }
+        else if (argument.contains("FormatNamesm")){
+            String files = argument.substring(18);
+            String input = files.split(" ")[0];
+            String output = files.split(" ")[1];
+            formatStrings(input,output,"middleUpperCase");
         }
         else if (argument.contains("FormatNames")){
             String files = argument.substring(17);
@@ -26,26 +32,6 @@ public class FilesInOut {
 
             formatStrings(input,output,"firstUpperCase");
         }
-        if (argument.contains("Java FormatNamesm")){
-
-        }
-
-
-        // Replace this with statements to set the file name (input) and file name (output).
-        // Initially it will be easier to hardcode suitable file names.
-
-        // Set up a new Scanner to read the input file.
-        // Processing line by line would be sensible here.
-        // Initially, echo the text to System.out to check you are reading correctly.
-        // Then add code to modify the text to the output format.
-
-        // Set up a new PrintWriter to write the output file.
-        // Add suitable code into the above processing (because you need to do this line by line also.
-        // That is, read a line, write a line, loop.
-
-        // Finally, add code to read the filenames as arguments from the command line.
-
-        System.out.println("You need to add your own code to do anything");
 
     } // main
 
@@ -79,12 +65,30 @@ public class FilesInOut {
 
             }
             if (formatWay.equals("middleUpperCase")){
-
+                if (line.split(" ").length==4){
+                    String first = line.split(" ")[0];
+                    first = first.substring(0, 1).toUpperCase() + first.substring(1);
+                    String middle = line.split(" ")[1];
+                    middle = middle.toUpperCase();
+                    String last = line.split(" ")[2];
+                    last = last.substring(0, 1).toUpperCase() + last.substring(1);
+                    String date = (line.split(" ")[3]);
+                    date = date.substring(0,2)+"/"+date.substring(2,4)+"/"+date.substring(4,8);
+                    line = first+ " "+middle+ ". " + last + " "+ date;
+                }
+                else{
+                    String first = line.split(" ")[0];
+                    first = first.substring(0, 1).toUpperCase() + first.substring(1);
+                    String last = line.split(" ")[1];
+                    last = last.substring(0, 1).toUpperCase() + last.substring(1);
+                    String date = (line.split(" ")[2]);
+                    date = date.substring(0,2)+"/"+date.substring(2,4)+"/"+date.substring(4,8);
+                    line = first+ " "+ last + " "+ date;
+                }
             }
             stringBuilder.append(line);
             stringBuilder.append(ls);
         }
-
         // delete the last new line separator
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
         reader.close();
